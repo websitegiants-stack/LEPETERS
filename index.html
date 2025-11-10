@@ -94,28 +94,44 @@
     nav{position:fixed;top:0;width:100%;padding:0.8rem 5%;z-index:1000;background:rgba(15,15,15,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);}
     .nav-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
     
-    /* === LOGO FONT FIX === */
+    /* === LOGO FONT FIX & REFERENCE NUMBER CONTAINER - SPACING ADJUSTED === */
     .nav-logo{
-        font-family: 'Playfair Display', serif; /* FIX: Changed to clean, bold Playfair Display */
+        font-family: 'Playfair Display', serif; 
         font-size: 2rem; 
-        font-weight:900; /* Made bolder for visibility */
+        font-weight:900; 
         background:linear-gradient(135deg,var(--primary),var(--accent));
         -webkit-background-clip:text;
         -webkit-text-fill-color:transparent;
         letter-spacing: -1px; 
         display: flex; 
+        flex-wrap: wrap; 
         align-items: center;
         gap: 0.5rem; 
-        line-height: 1; 
-        transform: translateY(-2px);
+        line-height: 1.1; /* Adjusted for better top spacing */
+        transform: none; /* Removed transform to prevent squashing */
     }
     .nav-logo i {
         font-size: 1.3rem; 
         color: var(--primary); 
         text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2),-1px -1px 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 107, 53, 0.4),0 4px 6px rgba(0, 0, 0, 0.5);
     }
-    
-    /* Logo Visibility and Sizing Adjustments - Icon is now visible at all sizes */
+
+    /* === NEW STYLE FOR REFERENCE NUMBER - SPACING ADJUSTED === */
+    .reference-number {
+        display: block; 
+        width: 100%;
+        text-align: left;
+        font-size: 0.7rem; /* Slightly increased size */
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5); 
+        letter-spacing: 0.5px;
+        margin-top: -5px; /* Adjusted to create a clear gap */
+        padding-top: 2px; /* Ensures clearance above the text */
+        font-family: 'Inter', sans-serif;
+        background: none; 
+        -webkit-background-clip: unset; 
+        -webkit-text-fill-color: unset; 
+    }
     
     @media (min-width: 1024px) {
         .nav-logo { font-size: 2rem; }
@@ -162,6 +178,7 @@
         width: 100%; 
         margin: 0 auto;
         display: flex;
+        /* Aligned to center (only one item left) */
         justify-content: center; 
         align-items: center;
         gap: 2rem;
@@ -192,20 +209,6 @@
         color: var(--light);
     }
 
-    .reg-number-top {
-        display: inline-flex;
-        align-items: center;
-        color: rgba(255, 255, 255, 0.7);
-        font-weight: 400;
-        line-height: 1.2;
-        flex-shrink: 0;
-        white-space: nowrap;
-    }
-    .reg-number-top i {
-        color: var(--accent);
-        margin-right: 0.5rem;
-    }
-
     /* Adjustments for fixed elements */
     .hero {
         padding-top: max(80px, 5rem) !important; 
@@ -229,9 +232,6 @@
         .nhbrc-badge-top {
             font-size: 0.8rem; 
             padding: 0.5rem 1rem;
-        }
-        .reg-number-top {
-            font-size: 0.8rem;
         }
         .hero {
             min-height: calc(100vh - 60px); 
@@ -262,7 +262,8 @@
     .hero-subtitle{
         font-family: 'Poppins', sans-serif; 
         font-weight:300; 
-        font-size:clamp(1.5rem, 5vw, 2.5rem); /* FIX: Decreased size for a more subtle, stylish look */
+        /* UPDATED: Reduced font size range for a more subtle look */
+        font-size:clamp(1.2rem, 4vw, 2rem); 
         margin-bottom:2.5rem; 
         letter-spacing: 2px; 
         text-transform: uppercase; 
@@ -373,13 +374,67 @@
         font-size: 1.2em;
     }
 
-    .contact-detail {display: flex;align-items: flex-start;margin-bottom: 0.8rem;font-size: 1rem;line-height: 1.6;color: rgba(255,255,255,.85);}
-    .contact-detail i {font-size: 1.1rem;color: var(--primary);margin-right: 1rem;width: 25px; text-align: center;flex-shrink: 0;transform: translateY(3px); }
-    .contact-detail .label {font-weight: 600;color: rgba(255,255,255,.7);margin-right: 0.5rem;flex-shrink: 0;}
-    .contact-detail a {color: var(--light);text-decoration: none;transition: color 0.3s;}
+    /* === CONTACT DETAIL WRAPPING FIX === */
+    .contact-detail {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,.85);
+        flex-wrap: wrap; 
+    }
+    .contact-detail i {
+        font-size: 1.1rem;
+        color: var(--primary);
+        margin-right: 1rem;
+        width: 25px;
+        text-align: center;
+        flex-shrink: 0;
+        transform: translateY(3px);
+    }
+    .contact-detail .label {
+        font-weight: 600;
+        color: rgba(255,255,255,.7);
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+        white-space: nowrap; 
+    }
+    .contact-detail a {
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
     .contact-detail a:hover {color: var(--accent);}
-    
-    .map-link {display: flex;align-items: center;margin-top: 1rem;padding: 0.6rem 1.2rem;background: rgba(255, 255, 255, 0.05);border-radius: 10px;color: var(--primary);text-decoration: none;font-weight: 700;transition: all 0.3s;border: 1px solid rgba(255, 255, 255, 0.1);font-size: 0.95rem;}
+
+    /* Target the Address text itself, which is the last span in the first two cards */
+    .contact-detail span:last-child {
+        word-break: break-word; 
+        min-width: 0; 
+        flex-grow: 1; 
+    }
+    /* =================================== */
+
+    /* === MAP LINK WRAPPING FIX === */
+    .map-link {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.95rem;
+        white-space: normal;
+        text-align: center;
+        justify-content: center; 
+    }
+    /* ============================= */
+
     .map-link:hover {background: var(--primary);color: var(--dark);box-shadow: 0 5px 20px rgba(255, 107, 53, 0.5);transform: translateY(-2px);}
     .map-link i {font-size: 1.2rem;margin-right: 0.8rem;color: inherit;}
     
@@ -404,14 +459,19 @@
     .footer-text, footer p{color:rgba(255,255,255,.5);margin-top:0.5rem;font-size:0.9rem;}
     
     /* MEDIA QUERIES */
-    @media (max-width:1024px){.about-grid{grid-template-columns:1fr;gap:3rem}.contact-container{grid-template-columns:1fr;gap:3rem}.about-image{height: 400px; max-height: 70vw;}}
+    @media (max-width:1024px){
+        .about-grid{grid-template-columns:1fr;gap:3rem}
+        /* FIX: Contact container correctly stacks columns on tablets and phones */
+        .contact-container{grid-template-columns:1fr;gap:3rem}
+        .about-image{height: 400px; max-height: 70vw;}
+    }
     @media (max-width: 768px){
         section{padding:5rem 5%}
         .hero-buttons{flex-direction: column; gap: 1rem; padding-bottom: 2rem;}
         
         .btn-primary{
             width: auto; 
-            max-width: 200px; /* Smaller max-width for a cleaner look */
+            max-width: 200px; 
             margin: 0 auto; 
             padding: 0.8rem 1.8rem; 
             font-size: 0.95rem; 
@@ -422,15 +482,17 @@
         .services-grid{grid-template-columns:1fr}
         .form-row{grid-template-columns:1fr}
         .whatsapp-float {width: 45px;height: 45px;bottom: 15px;right: 15px;font-size: 22px;line-height: 45px;}
+        section{padding: 4rem 5%;} 
     } 
     @media (max-width: 480px) {
         section{padding:3rem 5%;}
         .hero-title{font-size:clamp(2.5rem, 15vw, 9rem);}
-        .hero-subtitle{font-size:clamp(1.5rem, 8vw, 2.2rem);} /* Adjust for smallest screens too */
+        .hero-subtitle{font-size:clamp(1.2rem, 5vw, 2rem);} 
         .about-image{height: 250px; max-height: 60vw;}
-        .contact-form{padding: 2rem;}
+        .contact-form{padding: 1.5rem;} 
         .info-card{padding: 1.5rem;}
         .mobile-menu {width: 80%; padding: 1rem;}
+        .top-info-bar {padding: 0.5rem 5%;}
     }
 
     /* Animation classes */
@@ -474,6 +536,7 @@
       <div class="nav-logo">
         <i class="fa-solid fa-helmet-safety"></i> 
         Lepeters Trading
+        <span class="reference-number">2007/207586/23</span>
       </div>
       <div class="nav-links">
         <a href="#about">About</a>
@@ -497,10 +560,6 @@
           <div class="nhbrc-badge-top">
               <i class="fa-solid fa-award"></i>
               NHBRC Certified: <span class="number">1-30650831</span>
-          </div>
-          <div class="reg-number-top">
-              <i class="fa-solid fa-address-card"></i>
-              Company Registration: 2007/207586/23
           </div>
       </div>
   </div>
@@ -648,7 +707,7 @@
           
           <div class="contact-detail">
             <i class="fa-solid fa-location-dot"></i>
-            <span class="label">Address:</span> 1421 Main Street, Dwarsloop, Bushbuckridge
+            <span class="label">Address:</span> <span>1421 Main Street, Dwarsloop, Bushbuckridge</span>
           </div>
           
           <a href="https://www.google.com/maps/search/?api=1&query=1421+Main+Street,+Dwarsloop,+Bushbuckridge" target="_blank" class="map-link">
@@ -661,7 +720,7 @@
           
           <div class="contact-detail">
             <i class="fa-solid fa-location-dot"></i>
-            <span class="label">Address:</span> Unit 30, Saint Cloud, Hyperion Drive, North Riding, Randburg
+            <span class="label">Address:</span> <span>Unit 30, Saint Cloud, Hyperion Drive, North Riding, Randburg</span>
           </div>
           
           <a href="https://www.google.com/maps/search/?api=1&query=Unit+30,+Saint+Cloud,+Hyperion+Drive,+North+Riding,+Randburg" target="_blank" class="map-link">
